@@ -25,7 +25,7 @@ backend/
     utils/
   test/
   .env.example
-  render.yaml
+  vercel.json
 
 shopify-theme/
   assets/
@@ -192,15 +192,13 @@ If preferred, the product snippet can also receive the backend URL directly:
 
 ## Deployment
 
-Render is used as the deployment target for this Express backend:
+Vercel is used as the deployment target for this Express backend:
 
 1. Push this repo to GitHub as `brainxTest-wishlist-app`.
-2. Create a Render Web Service.
+2. Import the repository in Vercel.
 3. Set root directory to `backend`.
-4. Set build command to `npm install`.
-5. Set start command to `npm start`.
-6. Add the environment variables from `backend/.env.example`.
-7. Deploy and verify `/health`.
+4. Add the environment variables from `backend/.env.example`.
+5. Deploy and verify `/health`.
 
 ## Security Notes
 
