@@ -1,0 +1,40 @@
+{% comment %}
+  Product page wishlist button.
+  Usage inside a product template/section:
+    {% render 'wishlist-button', product: product %}
+
+  Set the backend URL by either:
+  1. Passing wishlist_backend_url into the snippet, or
+  2. Creating shop metafield custom.wishlist_backend_url.
+{% endcomment %}
+
+{% assign wishlist_api_url = wishlist_backend_url | default: shop.metafields.custom.wishlist_backend_url.value %}
+
+<div
+  class="wishlist-product"
+  data-wishlist-product
+  data-backend-url="{{ wishlist_api_url | escape }}"
+  data-product-id="{{ product.id }}"
+  {% if customer %}
+    data-customer-id="{{ customer.id }}"
+  {% endif %}
+>
+  {% if customer %}
+    <button
+      type="button"
+      class="wishlist-button"
+      data-wishlist-toggle
+      aria-pressed="false"
+    >
+      Add to Wishlist
+    </button>
+    <p class="wishlist-status" data-wishlist-status aria-live="polite"></p>
+  {% else %}
+    <a class="wishlist-login-link" href="{{ routes.storefront_login_url }}">
+      Log in to use wishlist
+    </a>
+  {% endif %}
+</div>
+
+{{ 'wishlist.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wishlist.js' | asset_url }}" defer></script>
