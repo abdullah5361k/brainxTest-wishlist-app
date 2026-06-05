@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: brainx-test-wishlist-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SHOPIFY_API_VERSION
+        value: 2026-04
+      - key: SHOPIFY_METAFIELD_NAMESPACE
+        value: custom
+      - key: SHOPIFY_METAFIELD_KEY
+        value: wishlist

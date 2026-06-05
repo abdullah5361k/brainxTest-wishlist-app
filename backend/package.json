@@ -1,0 +1,22 @@
+{
+  "name": "brainx-test-wishlist-backend",
+  "version": "1.0.0",
+  "description": "Express backend for a Shopify customer wishlist stored in customer metafields.",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test",
+    "check": "node --check src/server.js && node --check src/app.js && node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {}
+}

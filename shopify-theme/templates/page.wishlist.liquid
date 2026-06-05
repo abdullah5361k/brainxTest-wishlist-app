@@ -1,0 +1,36 @@
+{% comment %}
+  Assign this template to a Shopify page with the handle /pages/wishlist.
+  Set shop metafield custom.wishlist_backend_url to your deployed backend URL.
+{% endcomment %}
+
+{% assign wishlist_api_url = shop.metafields.custom.wishlist_backend_url.value %}
+
+<div
+  class="wishlist-page"
+  data-wishlist-page
+  data-backend-url="{{ wishlist_api_url | escape }}"
+  {% if customer %}
+    data-customer-id="{{ customer.id }}"
+  {% endif %}
+>
+  <header class="wishlist-page__header">
+    <h1>{{ page.title | default: 'Wishlist' }}</h1>
+  </header>
+
+  {% if customer %}
+    <div class="wishlist-page__status" data-wishlist-page-status aria-live="polite">
+      Loading wishlist...
+    </div>
+    <div class="wishlist-grid" data-wishlist-grid></div>
+  {% else %}
+    <div class="wishlist-empty">
+      <p>Please log in to view your wishlist.</p>
+      <a class="wishlist-button wishlist-button--secondary" href="{{ routes.account_login_url }}">
+        Log in
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{{ 'wishlist.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'wishlist.js' | asset_url }}" defer></script>
